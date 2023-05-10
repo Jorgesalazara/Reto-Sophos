@@ -2,6 +2,8 @@
 import React, { useState, useEffect} from 'react';
 import './App.css';
 
+
+
 const AlquileresPage = () => {
   const [alquileres, setAlquileres] = useState([]);
   const [nuevoAlquiler, setNuevoAlquiler] = useState({
