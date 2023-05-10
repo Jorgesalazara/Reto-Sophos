@@ -1,5 +1,5 @@
 
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import './App.css';
 
 const AlquileresPage = () => {
@@ -15,12 +15,11 @@ const AlquileresPage = () => {
     window.localStorage.getItem("Storage") || "[]"
   );
 
-  const ObtenetStorage = () => {  
-    if (Storage.length > 0) {
-      setAlquileres(Storage);
-    }
-  };
-  
+  useEffect(() => {
+    const storedAlquileres = JSON.parse(localStorage.getItem("Storage") || "[]");
+    setAlquileres(storedAlquileres);
+  }, []);
+
   const agregarAlquiler = (event) => {
     event.preventDefault();
     setAlquileres([...alquileres, nuevoAlquiler]);
