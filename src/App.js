@@ -1,7 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-
 
 const AlquileresPage = () => {
   const [alquileres, setAlquileres] = useState([]);
@@ -11,11 +10,20 @@ const AlquileresPage = () => {
     fechaAlquiler: '',
     fechaVencimiento: ''
   });
+   
+  useEffect(() => {
+    const storedAlquileres = JSON.parse(localStorage.getItem('alquileres'));
+    if (storedAlquileres) {
+      setAlquileres(storedAlquileres);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('alquileres', JSON.stringify(alquileres));
+  }, [alquileres]);
 
   const agregarAlquiler = (event) => {
     event.preventDefault();
-
-
     setAlquileres([...alquileres, nuevoAlquiler]);
     setNuevoAlquiler({
       id: '',
@@ -29,9 +37,7 @@ const AlquileresPage = () => {
     const { name, value } = event.target;
     setNuevoAlquiler({ ...nuevoAlquiler, [name]: value });
   };
-  
-  
-  
+
   return (
     <div>
       <h1>Registrar alquiler</h1>
@@ -67,7 +73,6 @@ const AlquileresPage = () => {
           value={nuevoAlquiler.fechaVencimiento}
           onChange={handleInputChange}
           placeholder="Fecha de vencimiento"
-
         />
 
         <button type="submit">Agregar alquiler</button>
@@ -75,11 +80,15 @@ const AlquileresPage = () => {
 
       <ul>
         {alquileres.map((alquiler, index) => (
-          <li key={index} className='info'>
-            <p>ID:</p>{alquiler.id} 
-            <p> TITULO:</p>{alquiler.titulo}  
-            <p> FECHA ALQUILER:</p>{alquiler.fechaAlquiler}
-            <p> FECHA VENCIMIENTO:</p>{alquiler.fechaVencimiento}
+          <li key={index} className="info">
+            <p>ID:</p>
+            {alquiler.id}
+            <p>TITULO:</p>
+            {alquiler.titulo}
+            <p>FECHA ALQUILER:</p>
+            {alquiler.fechaAlquiler}
+            <p>FECHA VENCIMIENTO:</p>
+            {alquiler.fechaVencimiento}
           </li>
         ))}
       </ul>
