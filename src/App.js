@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import './App.css';
 
 const AlquileresPage = () => {
@@ -10,18 +10,17 @@ const AlquileresPage = () => {
     fechaAlquiler: '',
     fechaVencimiento: ''
   });
-   
-  useEffect(() => {
-    const storedAlquileres = JSON.parse(localStorage.getItem('alquileres'));
-    if (storedAlquileres) {
-      setAlquileres(storedAlquileres);
+  
+  let Storage = JSON.parse(
+    window.localStorage.getItem("Storage") || "[]"
+  );
+
+  const ObtenetStorage = () => {  
+    if (Storage.length > 0) {
+      setAlquileres(Storage);
     }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('alquileres', JSON.stringify(alquileres));
-  }, [alquileres]);
-
+  };
+  
   const agregarAlquiler = (event) => {
     event.preventDefault();
     setAlquileres([...alquileres, nuevoAlquiler]);
@@ -31,6 +30,8 @@ const AlquileresPage = () => {
       fechaAlquiler: '',
       fechaVencimiento: ''
     });
+    Storage.push(nuevoAlquiler);
+    window.localStorage.setItem("Storage", JSON.stringify(Storage));
   };
 
   const handleInputChange = (event) => {
@@ -38,6 +39,7 @@ const AlquileresPage = () => {
     setNuevoAlquiler({ ...nuevoAlquiler, [name]: value });
   };
 
+  
   return (
     <div>
       <h1>Registrar alquiler</h1>
