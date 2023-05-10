@@ -1,25 +1,90 @@
-import logo from './logo.svg';
+
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+
+const AlquileresPage = () => {
+  const [alquileres, setAlquileres] = useState([]);
+  const [nuevoAlquiler, setNuevoAlquiler] = useState({
+    id: '',
+    titulo: '',
+    fechaAlquiler: '',
+    fechaVencimiento: ''
+  });
+
+  const agregarAlquiler = (event) => {
+    event.preventDefault();
+
+
+    setAlquileres([...alquileres, nuevoAlquiler]);
+    setNuevoAlquiler({
+      id: '',
+      titulo: '',
+      fechaAlquiler: '',
+      fechaVencimiento: ''
+    });
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNuevoAlquiler({ ...nuevoAlquiler, [name]: value });
+  };
+  
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Registrar alquiler</h1>
+
+      <form onSubmit={agregarAlquiler}>
+        <input
+          type="text"
+          name="id"
+          value={nuevoAlquiler.id}
+          onChange={handleInputChange}
+          placeholder="ID"
+        />
+
+        <input
+          type="text"
+          name="titulo"
+          value={nuevoAlquiler.titulo}
+          onChange={handleInputChange}
+          placeholder="Título"
+        />
+
+        <input
+          type="text"
+          name="fechaAlquiler"
+          value={nuevoAlquiler.fechaAlquiler}
+          onChange={handleInputChange}
+          placeholder="Fecha de alquiler"
+        />
+
+        <input
+          type="text"
+          name="fechaVencimiento"
+          value={nuevoAlquiler.fechaVencimiento}
+          onChange={handleInputChange}
+          placeholder="Fecha de vencimiento"
+
+        />
+
+        <button type="submit">Agregar alquiler</button>
+      </form>
+
+      <ul>
+        {alquileres.map((alquiler, index) => (
+          <li key={index} className='info'>
+            <p>ID:</p>{alquiler.id} 
+            <p> TITULO:</p>{alquiler.titulo}  
+            <p> FECHA ALQUILER:</p>{alquiler.fechaAlquiler}
+            <p> FECHA VENCIMIENTO:</p>{alquiler.fechaVencimiento}
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
 
-export default App;
+export default AlquileresPage;
