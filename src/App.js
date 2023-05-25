@@ -63,7 +63,7 @@ const AlquileresPage = () => {
         />
 
         <input
-          type="text"
+          type="date"
           name="fechaAlquiler"
           value={nuevoAlquiler.fechaAlquiler}
           onChange={handleInputChange}
@@ -71,7 +71,7 @@ const AlquileresPage = () => {
         />
 
         <input
-          type="text"
+          type="date"
           name="fechaVencimiento"
           value={nuevoAlquiler.fechaVencimiento}
           onChange={handleInputChange}

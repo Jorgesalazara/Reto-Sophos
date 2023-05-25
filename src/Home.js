@@ -1,12 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import './Home.css';
 
-const Home = (props) => {
+const Home = () => {
   return (
     <div>
-      <p>hola</p>
-      <button className="botonAlquiler" onClick={props.handleButtonClick}>
-        CREAR ALQUILERES
-      </button>
+      <header>
+      <link rel="stylesheet" href="Home.css"></link>
+      </header>
+      <h1>Bienvenido a la Tienda de Videojuegos</h1>
+      <p>¡Administra tus alquileres y consulta información importante!</p>
+      <h2>Funcionalidades:</h2>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/App">Crear Alquiler</Link>
+          </li>
+          <li>
+            <Link to="/Page">Gestión de Clientes</Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
