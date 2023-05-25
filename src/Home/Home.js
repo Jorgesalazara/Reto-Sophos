@@ -5,9 +5,6 @@ import './Home.css';
 const Home = () => {
   return (
     <div>
-      <header>
-      <link rel="stylesheet" href="Home.css"></link>
-      </header>
       <h1>Bienvenido a la Tienda de Videojuegos</h1>
       <p>¡Administra tus alquileres y consulta información importante!</p>
       <h2>Funcionalidades:</h2>

@@ -39,11 +39,15 @@ const handleInputChange = (event) => {
     setNuevoCliente({ ...nuevoCliente, [name]: value });    
 };
 
+const eliminarCliente = (id) => {
+    const nuevosClientes = Clientes.filter((cliente) => cliente.id !== id);
+    setClientes(nuevosClientes);
+    window.localStorage.setItem("Clientes", JSON.stringify(nuevosClientes));
+};
+
     return (
         <div>
-            <header>
-            <link rel="stylesheet" href="Page.css"></link>
-            </header>
+        
             
             <h1>Registrar cliente</h1>
             <form onSubmit={agregarCliente}>
@@ -97,6 +101,8 @@ const handleInputChange = (event) => {
                 <p>Juego:  {cliente.juego}</p>
                 
                 <p>Fecha de Vencimiento:  {cliente.fechaVencimiento}</p>
+
+                <button onClick={() => eliminarCliente(cliente.id)}>Eliminar</button>
                 
             </li>
             ))}

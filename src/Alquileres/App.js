@@ -40,7 +40,11 @@ const AlquileresPage = () => {
     setNuevoAlquiler({ ...nuevoAlquiler, [name]: value });
   };
 
-  
+  const eliminarAlquiler = (id) => {
+    const nuevosAlquileres = alquileres.filter((alquiler) => alquiler.id !== id);
+    setAlquileres(nuevosAlquileres);
+    window.localStorage.setItem("Storage", JSON.stringify(nuevosAlquileres));
+  };
   return (
     <div>
       <h1>Registrar alquiler</h1>
@@ -84,14 +88,16 @@ const AlquileresPage = () => {
       <ul>
         {alquileres.map((alquiler, index) => (
           <li key={index} className="info">
-            <p>ID:</p>
-            {alquiler.id}
-            <p>TITULO:</p>
-            {alquiler.titulo}
-            <p>FECHA ALQUILER:</p>
-            {alquiler.fechaAlquiler}
-            <p>FECHA VENCIMIENTO:</p>
-            {alquiler.fechaVencimiento}
+            <p>ID:   {alquiler.id}</p>
+            
+            <p>TITULO:   {alquiler.titulo}</p>
+            
+            <p>FECHA ALQUILER:   {alquiler.fechaAlquiler}</p>
+            
+            <p>FECHA VENCIMIENTO:   {alquiler.fechaVencimiento}</p>
+
+            <button className='btnDel' onClick={() => eliminarAlquiler(alquiler.id)}>Eliminar</button>
+            
           </li>
         ))}
       </ul>

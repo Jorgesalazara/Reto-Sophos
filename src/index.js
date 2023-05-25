@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import App from './App';
-import Page from './Page';
+import Home from './Home/Home';
+import App from './Alquileres/App';
+import Page from './Clientes/Page';
 
 
 class Main extends React.Component {
