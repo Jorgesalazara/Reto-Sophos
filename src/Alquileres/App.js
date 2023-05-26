@@ -67,7 +67,8 @@ const AlquileresPage = () => {
         />
 
         <input
-          type="date"
+          type="text"
+          onFocus={(e) => (e.target.type = "date")}
           name="fechaAlquiler"
           value={nuevoAlquiler.fechaAlquiler}
           onChange={handleInputChange}
@@ -75,7 +76,8 @@ const AlquileresPage = () => {
         />
 
         <input
-          type="date"
+          type="text"
+          onFocus={(e) => (e.target.type = "date")}
           name="fechaVencimiento"
           value={nuevoAlquiler.fechaVencimiento}
           onChange={handleInputChange}
